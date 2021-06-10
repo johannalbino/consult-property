@@ -24,6 +24,9 @@ async def consult_property(property: Property):
     data = await processing_data(dict(property))
     if data is False:
         return JSONResponse(status_code=500, content={"Detail": "Does not possible consult this information, api external is offline."})
+    if len(data) == 0:
+        return JSONResponse(status_code=204)
+
     n_obs, median, area = treating_data(data)
     response = {
         "n_obs": len(data),

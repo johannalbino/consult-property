@@ -1,11 +1,13 @@
 from src.core.utils import get_data_propertys
-import numpy
 
 
 async def processing_data(body):
     neighborhood = body['neighborhood']
     transaction = body['transaction']
     data_external = await get_data_propertys()
+
+    if data_external is False:
+        return False
 
     propertys = []
 

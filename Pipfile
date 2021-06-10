@@ -11,6 +11,10 @@ appdirs = "*"
 jsonschema = "*"
 uvicorn = "*"
 numpy = "*"
+requests = "*"
+gunicorn = "*"
+mangum = "*"
+flake8 = "*"
 
 [dev-packages]
 

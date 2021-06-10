@@ -1,52 +1,13 @@
-version: '2'
+version: '3.2'
 services:
-  newrabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq_bot
-    ports:
-      - "15672:15672"
-    environment:
-      - RABBITMQ_DEFAULT_USER=zapay
-      - RABBITMQ_DEFAULT_PASS=rabbitzapay
-      - RABBITMQ_DEFAULT_VHOST=zapayvhost
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres_bot
-    environment:
-      - POSTGRES_NAME=zapay
-      - NEW_POSTGRES_NAME=zapay
-      - POSTGRES_PASSWORD=zapay
-      - POSTGRES_USER=zapay
-      - POSTGRES_DB=zapay
-    volumes:
-      - ./.ignore/postgres/postgres:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin_bot
-    ports:
-      - "5433:80"
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@usezapay.com.br
-      - PGADMIN_DEFAULT_PASSWORD=zapay_pass
-    volumes:
-      - ./.ignore/var/lib/pgadmin:/var/lib/pgadmin
-  web:
-    image: zapay/bot:latest
+  api:
+    image: apiviva/bot:latest
     build: .
-    container_name: bot_zapay
-    env_file:
-      - .env
+    container_name: apiviva
     environment:
-      - NEW_POSTGRES_NAME=zapay
-      - POSTGRES_USER=zapay
-      - POSTGRES_PASSWORD=zapay
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
+      - ENVIRONMENT=prod
+      - LINK_API_EXTERNAL=http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-2.json
     ports:
-      - "80:8000"
+      - "8000:8000"
     volumes:
       - .:/code
-    depends_on:
-      - postgres
-      - newrabbitmq

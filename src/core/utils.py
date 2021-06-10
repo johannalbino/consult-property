@@ -10,6 +10,8 @@ async def get_data_propertys():
             resp = req
             if resp.status == 200:
                 return await resp.json()
+            else:
+                return False
 
 
 def treating_data(data):
@@ -39,7 +41,7 @@ def treating_data(data):
             va = [y for y in data if y['usableAreas'] < value]
             class_per_area[f"ate{value}m2"] = va
         else:
-            va = [y for y in data if y['usableAreas'] >= LIST_AREA_50[key - 1] and y['usableAreas'] < LIST_AREA_50[key] and y['usableAreas'] < value]
+            va = [y for y in data if LIST_AREA_50[key - 1] <= y['usableAreas'] < LIST_AREA_50[key] and y['usableAreas'] < value]
             if va:
                 class_per_area[f"de{value-50}ate{value}m2"] = va
 

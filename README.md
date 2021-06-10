@@ -54,7 +54,16 @@ Install project with Docker
 To run tests, run the following command
 
 ```bash
-  python test
+  pytest
+```
+
+
+## Deployment
+
+To deploy this project run
+
+```bash
+  sls deploy --stage
 ```
 
   
