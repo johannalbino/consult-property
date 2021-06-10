@@ -1,15 +1,15 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+from src.core.utils import get_data_propertys
+import numpy
 
 
-class Property(BaseModel):
-    neighborhood: str
-    transaction: str
+async def processing_data(body):
+    neighborhood = body['neighborhood']
+    transaction = body['transaction']
+    data_external = await get_data_propertys()
 
+    propertys = []
 
-consult_property_router = APIRouter()
-
-
-@consult_property_router.post("/consult-property/")
-def consult_property(property: Property):
-    return property
+    for data_e in data_external:
+        if data_e['address']['neighborhood'] == neighborhood and data_e['pricingInfos']['businessType'] == transaction:
+            propertys.append(data_e)
+    return propertys

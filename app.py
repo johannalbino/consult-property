@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from src.handlers import heart_check_router, consult_property_router
+from src.routers import heart_check_router, consult_property_router
 from src.core.config import ENVIRONMENT
 
 
@@ -18,6 +18,6 @@ app.include_router(consult_property_router)
 if __name__ == "__main__":
     uvicorn.run(
         "app:app" if ENVIRONMENT == "dev" else app,
-        workers=1,
+        workers=2,
         reload=True
     )
