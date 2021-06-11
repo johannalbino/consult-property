@@ -1,0 +1,245 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "required": [
+        "usableAreas",
+        "listingStatus",
+        "address",
+        "pricingInfos"
+    ],
+    "properties": {
+        "usableAreas": {
+            "$id": "#/properties/usableAreas",
+            "type": "integer",
+            "title": "The usableAreas schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": 0,
+            "minimum": 35,
+            "maximum": 500,
+            "examples": [
+                75
+            ]
+        },
+        "listingStatus": {
+            "$id": "#/properties/listingStatus",
+            "type": "string",
+            "title": "The listingStatus schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "const": "ACTIVE",
+            "examples": [
+                "ACTIVE"
+            ]
+        },
+        "address": {
+            "$id": "#/properties/address",
+            "type": "object",
+            "title": "The address schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "city": "São Paulo",
+                    "neighborhood": "Brooklin",
+                    "geoLocation": {
+                        "precision": "RANGE_INTERPOLATED",
+                        "location": {
+                            "lon": -46.692307,
+                            "lat": -23.605332
+                        }
+                    }
+                }
+            ],
+            "required": [
+                "city",
+                "neighborhood",
+                "geoLocation"
+            ],
+            "properties": {
+                "city": {
+                    "$id": "#/properties/address/properties/city",
+                    "type": "string",
+                    "title": "The city schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "const": "São Paulo",
+                    "examples": [
+                        "São Paulo"
+                    ]
+                },
+                "neighborhood": {
+                    "$id": "#/properties/address/properties/neighborhood",
+                    "type": "string",
+                    "title": "The neighborhood schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "minLength": 1,
+                    "examples": [
+                        "Brooklin"
+                    ]
+                },
+                "geoLocation": {
+                    "$id": "#/properties/address/properties/geoLocation",
+                    "type": "object",
+                    "title": "The geoLocation schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": {},
+                    "examples": [
+                        {
+                            "precision": "RANGE_INTERPOLATED",
+                            "location": {
+                                "lon": -46.692307,
+                                "lat": -23.605332
+                            }
+                        }
+                    ],
+                    "required": [
+                        "precision",
+                        "location"
+                    ],
+                    "properties": {
+                        "precision": {
+                            "$id": "#/properties/address/properties/geoLocation/properties/precision",
+                            "type": "string",
+                            "title": "The precision schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": "",
+                            "enum": ["RANGE_INTERPOLATED", "ROOFTOP"]
+                        },
+                        "location": {
+                            "$id": "#/properties/address/properties/geoLocation/properties/location",
+                            "type": "object",
+                            "title": "The location schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": {},
+                            "examples": [
+                                {
+                                    "lon": -46.692307,
+                                    "lat": -23.605332
+                                }
+                            ],
+                            "required": [
+                                "lon",
+                                "lat"
+                            ],
+                            "properties": {
+                                "lon": {
+                                    "$id": "#/properties/address/properties/geoLocation/properties/location/properties/lon",
+                                    "type": "number",
+                                    "title": "The lon schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": 0.0,
+                                    "examples": [
+                                        -46.692307
+                                    ]
+                                },
+                                "lat": {
+                                    "$id": "#/properties/address/properties/geoLocation/properties/location/properties/lat",
+                                    "type": "number",
+                                    "title": "The lat schema",
+                                    "description": "An explanation about the purpose of this instance.",
+                                    "default": 0.0,
+                                    "examples": [
+                                        -23.605332
+                                    ]
+                                }
+                            },
+                            "additionalProperties": true
+                        }
+                    },
+                    "additionalProperties": true
+                }
+            },
+            "additionalProperties": true
+        },
+        "pricingInfos": {
+            "$id": "#/properties/pricingInfos",
+            "type": "object",
+            "title": "The pricingInfos schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+                {
+                    "period": "MONTHLY",
+                    "yearlyIptu": "100",
+                    "price": "2200",
+                    "rentalTotalPrice": "3300",
+                    "businessType": "RENTAL",
+                    "monthlyCondoFee": "1100"
+                }
+            ],
+            "required": [
+                "price",
+                "businessType"
+            ],
+            "properties": {
+                "period": {
+                    "$id": "#/properties/pricingInfos/properties/period",
+                    "type": "string",
+                    "title": "The period schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "MONTHLY"
+                    ]
+                },
+                "yearlyIptu": {
+                    "$id": "#/properties/pricingInfos/properties/yearlyIptu",
+                    "type": "string",
+                    "title": "The yearlyIptu schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "100"
+                    ]
+                },
+                "price": {
+                    "$id": "#/properties/pricingInfos/properties/price",
+                    "type": "string",
+                    "title": "The price schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "2200"
+                    ]
+                },
+                "rentalTotalPrice": {
+                    "$id": "#/properties/pricingInfos/properties/rentalTotalPrice",
+                    "type": "string",
+                    "title": "The rentalTotalPrice schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "3300"
+                    ]
+                },
+                "businessType": {
+                    "$id": "#/properties/pricingInfos/properties/businessType",
+                    "type": "string",
+                    "title": "The businessType schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "RENTAL"
+                    ]
+                },
+                "monthlyCondoFee": {
+                    "$id": "#/properties/pricingInfos/properties/monthlyCondoFee",
+                    "type": "string",
+                    "title": "The monthlyCondoFee schema",
+                    "description": "An explanation about the purpose of this instance.",
+                    "default": "",
+                    "examples": [
+                        "1100"
+                    ]
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "additionalProperties": true
+}

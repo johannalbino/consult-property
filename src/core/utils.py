@@ -48,6 +48,6 @@ def treating_data(data):
     class_per_area_final = {}
     for k, v in class_per_area.items():
         values_p = [float(va['pricingInfos']['price']) for va in v]
-        class_per_area_final[k] = round(np.mean(values_p), 2)
+        class_per_area_final[k] = len(values_p)
 
     return n_obs, median_all_area, class_per_area_final

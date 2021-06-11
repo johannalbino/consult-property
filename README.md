@@ -17,19 +17,14 @@ The purpose of this API is to query a neighborhood and property transaction avai
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `neighborhood` | `string` | **Required**. |
-| `transaction` | `string` | **Required**. SALE or RENTAL |
+| `bairro` | `string` | **Required**. |
+| `transacao` | `string` | **Required**. SALE or RENTAL |
 
 #### Verify API
 
 ```http
   GET /heart-check
 ```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
   
 ## Installation 
 

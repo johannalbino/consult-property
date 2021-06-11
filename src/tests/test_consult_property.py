@@ -10,20 +10,21 @@ client = TestClient(app)
 def test_consult_property_with_one_city(get_data_propertys_mock):
     get_data_propertys_mock.return_value = MOCK_REQUEST_API_EXTERNAL
     response = client.post('/consult-property/', json={
-        "neighborhood": "Alto da Boa Vista",
-        "transaction": "SALE"
+        "bairro": "Alto da Boa Vista",
+        "transacao": "SALE"
     })
 
     assert response.status_code == 200
     assert list(dict(response.json()).keys()) == ["n_obs", "preco_m2", "range"]
+    assert dict(response.json())['n_obs'] == 5
 
 
 @patch('src.handlers.consult_property.get_data_propertys')
 def test_consult_property_no_result(get_data_propertys_mock):
     get_data_propertys_mock.return_value = MOCK_REQUEST_API_EXTERNAL
     response = client.post('/consult-property/', json={
-        "neighborhood": "Vitória",
-        "transaction": "SALE"
+        "bairro": "Vitória",
+        "transacao": "SALE"
     })
 
     assert response.status_code == 204

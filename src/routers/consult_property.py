@@ -6,8 +6,8 @@ from src.handlers.consult_property import processing_data
 
 
 class Property(BaseModel):
-    neighborhood: str
-    transaction: str
+    bairro: str
+    transacao: str
 
 
 class ResponseProperty(BaseModel):
@@ -30,7 +30,7 @@ async def consult_property(property: Property):
     n_obs, median, area = treating_data(data)
     response = {
         "n_obs": len(data),
-        "preco_m2": median,
+        "preco_m2": round(median, 2),
         "range": area
     }
     return response
