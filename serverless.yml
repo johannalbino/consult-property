@@ -23,8 +23,6 @@ custom:
 functions:
   app:
     package:
-      include:
-        - "app.py"
       exclude:
         - "requirements.txt"
         - "package.json"
@@ -33,7 +31,7 @@ functions:
         - ".virtualenv/**"
         - "node_modules/**"
         -
-    handler: main.handler
+    handler: app.handler
     environment:
       STAGE: ${self:provider.stage}
       ENVIRONMENT: "prod"
